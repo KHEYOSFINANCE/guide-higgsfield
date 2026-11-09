@@ -1,0 +1,190 @@
+<title>Guide Higgsfield</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Mise en page : une colonne de lecture étroite, chapitres séparés par des filets, une seule couleur vive réservée aux boutons du lien. */
+:root {
+  --bg: #f6f6f3;
+  --surface: #ffffff;
+  --fg: #14161c;
+  --muted: #5a5f6b;
+  --line: #dcdcd5;
+  --accent: #e5391b;
+  --accent-fg: #ffffff;
+  --soft: #eceee8;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101216; --surface: #181b21; --fg: #eceef2; --muted: #9aa0ad;
+    --line: #2a2e37; --accent: #ff5a3c; --accent-fg: #14161c; --soft: #1d2026;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101216; --surface: #181b21; --fg: #eceef2; --muted: #9aa0ad;
+  --line: #2a2e37; --accent: #ff5a3c; --accent-fg: #14161c; --soft: #1d2026;
+  color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 17px; line-height: 1.6;
+  padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; min-width: 0; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.1; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(34px, 8vw, 52px); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(26px, 5.5vw, 34px); font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: 19px; font-weight: 700; }
+p { margin: 0; }
+.kicker { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.lead { font-size: 19px; color: var(--muted); max-width: 60ch; }
+header { display: flex; flex-direction: column; gap: 20px; }
+.btn {
+  display: inline-block; align-self: flex-start; background: var(--accent); color: var(--accent-fg);
+  font-family: var(--display); font-weight: 700; font-size: 18px; text-decoration: none;
+  padding: 15px 26px; border-radius: 10px;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
+.note { font-size: 14px; color: var(--muted); }
+section { display: flex; flex-direction: column; gap: 22px; padding-top: 28px; border-top: 1px solid var(--line); min-width: 0; }
+ul.plain { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; }
+ol.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; counter-reset: s; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; }
+ol.steps li::before {
+  content: counter(s); font-family: var(--display); font-weight: 800; font-size: 18px;
+  width: 40px; height: 40px; border-radius: 50%; background: var(--soft);
+  display: grid; place-items: center;
+}
+ol.steps strong { font-family: var(--display); font-size: 18px; }
+.ideas { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.idea { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.idea dl { margin: 0; display: grid; gap: 6px; font-size: 15px; }
+.idea dt { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.idea dd { margin: 0; }
+.prompt { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.prompt p.txt { font-size: 15px; overflow-wrap: anywhere; }
+.copy { align-self: flex-start; font: 600 14px var(--body); background: var(--soft); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 7px 14px; cursor: pointer; }
+.cta { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 16px; }
+footer { font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 8px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="kicker">Guide gratuit · vidéo IA</p>
+    <h1>Lance un business en ligne avec des vidéos et des visuels IA</h1>
+    <p class="lead">Ads réalistes, affiliation TikTok Shop, boutique e-commerce, avatar et influenceur IA, OFM IA : tu peux créer le contenu et lancer ces business rapidement avec une seule plateforme. Voici la méthode, les idées et des prompts à copier.</p>
+    <a class="btn" href="https://higgsfield.ai/?fpr=higgsfield-start" target="_blank" rel="noopener sponsored">Ouvrir Higgsfield avec ce lien</a>
+  </header>
+
+  <section id="outil">
+    <h2>Ce qu'est Higgsfield</h2>
+    <p>Higgsfield est une plateforme qui génère des images et des vidéos avec l'IA. Tu écris ce que tu veux voir, ou tu pars d'une photo, et tu obtiens un clip. Au même endroit, tu trouves plusieurs modèles de génération, des outils pour fabriquer des publicités, des personnages IA qui gardent le même visage d'une vidéo à l'autre, des réglages de mouvement de caméra et l'agrandissement d'une vidéo en meilleure qualité.</p>
+    <p>L'intérêt pour un business : tu n'as besoin ni de caméra, ni de studio, ni d'acteurs. Tu peux créer des publicités, des visuels produit, des avatars et des influenceurs IA, puis lancer ton activité plus vite qu'avec un tournage classique.</p>
+  </section>
+
+  <section id="avantage">
+    <h2>Teste l'outil à moindre coût</h2>
+    <p>Ce lien donne accès à l'offre de bienvenue, pour tester Higgsfield pour moins cher. Ouvre-le <strong>avant</strong> de créer ton compte.</p>
+    <a class="btn" href="https://higgsfield.ai/?fpr=higgsfield-start" target="_blank" rel="noopener sponsored">Profiter de l'offre</a>
+    <p class="note">Le détail de l'offre (réduction, durée, crédits) s'affiche sur la page et peut changer : vérifie-le avant de payer.</p>
+  </section>
+
+  <section id="methode">
+    <h2>Ta première vidéo en 5 étapes</h2>
+    <ol class="steps">
+      <li><div><strong>Crée ton compte via le lien</strong><p>Ouvre ce lien, inscris-toi et regarde ce que ton offre inclut.</p></div></li>
+      <li><div><strong>Choisis un objectif précis</strong><p>Une pub de 5 secondes pour un produit, un short vertical, un clip de personnage. Un objectif clair donne de meilleurs résultats qu'un prompt vague.</p></div></li>
+      <li><div><strong>Écris un prompt structuré</strong><p>Sujet, action, décor, lumière, mouvement de caméra, style. Exemples plus bas.</p></div></li>
+      <li><div><strong>Génère en petit, puis améliore</strong><p>Fais plusieurs essais courts, garde le meilleur, puis agrandis seulement celui-là. Tu économises des crédits.</p></div></li>
+      <li><div><strong>Monte et publie</strong><p>Assemble les clips dans ton appli de montage (CapCut par exemple), ajoute voix, musique et sous-titres, puis publie en vertical.</p></div></li>
+    </ol>
+  </section>
+
+  <section id="business">
+    <h2>8 business à lancer avec Higgsfield</h2>
+    <p>Chacun de ces business peut te permettre de générer des revenus. Aucun résultat n'est garanti : il dépend de ton travail, de ta régularité et de ton marché. Voici pour chacun un point de départ concret.</p>
+    <div class="ideas">
+      <article class="idea"><h3>Ads et créatives quasi réelles</h3><dl>
+        <div><dt>Le principe</dt><dd>Tu fabriques des vidéos publicitaires au rendu réaliste (style UGC, produit en situation) et tu les utilises pour lancer des publicités en ligne sur Meta et TikTok.</dd></div>
+        <div><dt>Pour qui</dt><dd>Ta propre boutique ou des marques qui veulent tester plusieurs créatives sans tournage.</dd></div>
+        <div><dt>Pour démarrer</dt><dd>Produis 5 variantes d'une même pub (accroche, décor, ton), lance-les avec un petit budget et garde celle qui performe.</dd></div></dl></article>
+      <article class="idea"><h3>Affiliation TikTok Shop</h3><dl>
+        <div><dt>Le principe</dt><dd>Tu présentes des produits en vidéo courte et tu touches une commission sur les ventes générées.</dd></div>
+        <div><dt>Pour qui</dt><dd>Créateurs qui veulent monétiser sans stock ni service client.</dd></div>
+        <div><dt>Pour démarrer</dt><dd>Choisis une niche, génère des démonstrations produit en 9:16 et publie chaque jour pour voir ce qui accroche.</dd></div></dl></article>
+      <article class="idea"><h3>Boutique e-commerce</h3><dl>
+        <div><dt>Le principe</dt><dd>Tu crées une boutique en ligne et tu génères visuels produit, vidéos et publicités avec l'IA, sans shooting.</dd></div>
+        <div><dt>Pour qui</dt><dd>Entrepreneurs qui veulent tester un produit ou une marque rapidement.</dd></div>
+        <div><dt>Pour démarrer</dt><dd>Teste un produit avec 3 visuels et 2 vidéos avant d'investir dans un stock.</dd></div></dl></article>
+      <article class="idea"><h3>Avatar IA</h3><dl>
+        <div><dt>Le principe</dt><dd>Tu crées un porte-parole virtuel qui présente tes produits ou ton contenu, avec le même visage d'une vidéo à l'autre.</dd></div>
+        <div><dt>Pour qui</dt><dd>Marques, coachs et créateurs qui ne veulent pas apparaître à l'écran.</dd></div>
+        <div><dt>Pour démarrer</dt><dd>Définis son look et son style, génère une feuille de personnage, puis une première vidéo de présentation.</dd></div></dl></article>
+      <article class="idea"><h3>Influenceur IA</h3><dl>
+        <div><dt>Le principe</dt><dd>Tu lances un personnage récurrent avec son compte, son univers et son audience, puis tu le monétises par partenariats, affiliation ou abonnements.</dd></div>
+        <div><dt>Pour qui</dt><dd>Créateurs qui veulent construire une audience autour d'un personnage.</dd></div>
+        <div><dt>Pour démarrer</dt><dd>Choisis une niche, crée 9 images cohérentes pour la grille, puis publie des vidéos régulièrement. Indique toujours que le personnage est généré par IA.</dd></div></dl></article>
+      <article class="idea"><h3>OFM IA</h3><dl>
+        <div><dt>Le principe</dt><dd>Tu gères un ou plusieurs créateurs ou modèles IA sur les plateformes d'abonnement : création du contenu, publication et animation de la communauté.</dd></div>
+        <div><dt>Pour qui</dt><dd>Personnes à l'aise avec la gestion de comptes et de contenu, majeures uniquement.</dd></div>
+        <div><dt>Pour démarrer</dt><dd>Lis d'abord les règles de la plateforme choisie sur le contenu généré par IA, respecte-les et signale que le personnage est virtuel.</dd></div></dl></article>
+      <article class="idea"><h3>Service de contenu pour marques</h3><dl>
+        <div><dt>Le principe</dt><dd>Tu vends à des commerces et à des marques des packs mensuels de vidéos et de visuels IA.</dd></div>
+        <div><dt>Pour qui</dt><dd>Coiffeurs, restaurants, salles de sport, coachs, marques locales.</dd></div>
+        <div><dt>Pour démarrer</dt><dd>Réalise un exemple pour une marque de ta ville, puis propose un pack de 4 vidéos par mois à un prix fixe.</dd></div></dl></article>
+      <article class="idea"><h3>Chaîne de shorts sans visage</h3><dl>
+        <div><dt>Le principe</dt><dd>Tu publies chaque jour des vidéos courtes sur une niche et tu monétises par l'audience, l'affiliation ou tes produits.</dd></div>
+        <div><dt>Pour qui</dt><dd>Créateurs qui veulent construire un actif sur la durée.</dd></div>
+        <div><dt>Pour démarrer</dt><dd>Choisis un format répétable et tiens-le pendant 30 jours avant de juger.</dd></div></dl></article>
+    </div>
+  </section>
+
+  <section id="prompts">
+    <h2>3 prompts à copier</h2>
+    <p>Remplace ce qui est entre crochets par ton sujet.</p>
+    <div class="prompt"><p class="txt" id="p1">Plan rapproché d'un [produit] posé sur une table en marbre, lumière douce du matin, gouttelettes d'eau, caméra qui tourne lentement autour, style publicité premium, 5 secondes.</p><button class="copy" type="button" data-target="p1">Copier</button></div>
+    <div class="prompt"><p class="txt" id="p2">[Personnage] marche dans une rue de nuit éclairée par des néons, pluie fine, travelling arrière suivant son visage, ambiance cinéma, format vertical 9:16.</p><button class="copy" type="button" data-target="p2">Copier</button></div>
+    <div class="prompt"><p class="txt" id="p3">Intérieur d'un [restaurant / salle de sport / salon], clients souriants, mouvement de caméra fluide à hauteur d'épaule, lumière chaude naturelle, style vidéo réseaux sociaux, 8 secondes.</p><button class="copy" type="button" data-target="p3">Copier</button></div>
+  </section>
+
+  <section id="economiser">
+    <h2>Dépenser moins de crédits</h2>
+    <ul class="plain">
+      <li>Teste chaque idée avec un clip court avant de lancer une version longue.</li>
+      <li>Change un seul élément du prompt à la fois, pour savoir ce qui améliore le résultat.</li>
+      <li>Agrandis uniquement la version finale que tu publies.</li>
+      <li>Garde tes meilleurs prompts dans un document pour les réutiliser.</li>
+      <li>Ouvre ce lien avant de créer ton compte pour profiter de l'offre de bienvenue.</li>
+    </ul>
+  </section>
+
+  <section class="cta" id="start">
+    <h2>Prêt à lancer ta première vidéo ?</h2>
+    <p>Ouvre le lien avant de créer ton compte, pour profiter de l'offre et tester l'outil avec moins de budget.</p>
+    <a class="btn" href="https://higgsfield.ai/?fpr=higgsfield-start" target="_blank" rel="noopener sponsored">Commencer avec Higgsfield</a>
+  </section>
+
+</div>
+
+<script>
+document.querySelectorAll(".copy").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    var el = document.getElementById(btn.dataset.target);
+    var done = function () { btn.textContent = "Copié ✓"; setTimeout(function () { btn.textContent = "Copier"; }, 1800); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "Texte sélectionné";
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(el.textContent.trim()).then(done, fallback);
+    } else { fallback(); }
+  });
+});
+</script>
